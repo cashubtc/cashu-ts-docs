@@ -19,10 +19,10 @@ const config: Config = {
     },
   ],
 
-  url: "https://egge21m.github.io/",
+  url: "https://cashubtc.github.io/",
   baseUrl: "/cashu-ts-docs/",
 
-  organizationName: "Egge21M",
+  organizationName: "cashubtc",
   projectName: "cashu-ts-docs",
 
   onBrokenLinks: "throw",
