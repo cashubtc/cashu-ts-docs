@@ -60,6 +60,14 @@ const config: Config = {
           label: "Docs",
         },
       ],
+      logo: {
+        alt: "Site Logo",
+        src: "img/tslogo.png",
+        target: "_self",
+        width: 32,
+        height: 32,
+        className: "custom-navbar-logo-class",
+      },
     },
     announcementBar: {
       id: "wip",
