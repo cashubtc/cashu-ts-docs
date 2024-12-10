@@ -19,8 +19,8 @@ const config: Config = {
     },
   ],
 
-  url: "https://egge21m.github.io/cashu-ts-docs",
-  baseUrl: "/",
+  url: "https://egge21m.github.io/",
+  baseUrl: "/cashu-ts-docs/",
 
   organizationName: "Egge21M",
   projectName: "cashu-ts-docs",
