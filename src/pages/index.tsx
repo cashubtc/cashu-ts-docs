@@ -285,9 +285,14 @@ export default function Home(): JSX.Element {
                   src={require("@site/static/img/tslogo.png").default}
                   className="w-12 h-12"
                 />
-                <h1 className="text-5xl font-extrabold lg:text-6xl leading-tight">
-                  cashu-ts: a lightweight library for Cashu development.
-                </h1>
+                <div>
+                  <h1 className="text-5xl font-extrabold lg:text-6xl leading-tight">
+                    <span className="font-jersey">Cashu TS</span>
+                  </h1>
+                  <h2 className="text-3xl font-dm-mono text-purple-100 -mt-4">
+                    a lightweight library for Cashu development.
+                  </h2>
+                </div>
               </div>
 
               <div className="inline-block">
@@ -309,7 +314,7 @@ export default function Home(): JSX.Element {
 
             <div className="hidden lg:block text-white">
               <p className="text-2xl">
-              Integrate Cashu functionality in minutes.
+              We handle the groundwork, you ship the features. Build your Cashu app with confidence using cashu-ts.
               </p>
             </div>
           </div>

@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Jersey+20&family=DM+Mono:wght@300;400;500&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -31,4 +33,14 @@
   --ifm-color-primary-lighter: #e879f9;
   --ifm-color-primary-lightest: #e879f9;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+}
+
+@layer utilities {
+  .font-jersey {
+    font-family: 'Jersey 20', sans-serif;
+  }
+
+  .font-dm-mono {
+    font-family: 'DM Mono', monospace;
+  }
 }
