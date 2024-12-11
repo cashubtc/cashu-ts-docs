@@ -276,8 +276,8 @@ export default function Home(): JSX.Element {
         }}
       />
       <main className="h-screen bg-transparent pt-24">
-        <div className="container mx-auto px-4 h-full flex flex-col">
-          <div className="flex flex-col h-full">
+        <div className="h-full flex flex-col">
+          <div className="container mx-auto px-4">
             <div className="mb-12">
               <h1 className="text-7xl font-extrabold mb-4 text-white">
                 <span className="mono-text">
@@ -320,38 +320,51 @@ export default function Home(): JSX.Element {
                 Start Building ↗
               </a>
             </div>
+          </div>
 
-            <div className="mt-12 mb-12">
-              <h2 className="text-center text-2xl mb-8 text-zinc-400">
-                Built with Cashu TS
-                <span className="block text-zinc-500">building the next generation of digital cash apps</span>
-              </h2>
-              <div className="grid grid-cols-3 gap-4 max-w-6xl mx-auto px-4">
-                {Array(6).fill(null).map((_, index) => (
-                  <div 
-                    key={index}
-                    className="flex flex-col h-full p-8 rounded-lg 
-                      bg-[rgba(88,28,135,0.05)] 
-                      border border-purple-900/20
-                      transition-all duration-300
-                      hover:bg-[rgba(88,28,135,0.1)]
-                      hover:border-purple-900/30"
-                  >
-                    <div className="flex items-center gap-4 mb-4">
-                      <div className="w-10 h-10 flex items-center justify-center">
-                        <img 
-                          src={cashuLogo}
-                          alt="Feature icon"
-                          className="w-8 h-8 object-contain"
-                        />
+          <div className="w-full mt-24 mb-24">
+            <div className="relative w-full py-24">
+              <div className="absolute inset-0 bg-gradient-to-b from-purple-900/10 to-transparent" />
+              
+              <div className="container mx-auto px-4 relative">
+                <h2 className="text-center mb-8">
+                  <span className="text-4xl font-extrabold text-white block mb-4">
+                    Built with Cashu TS
+                  </span>
+                  <span className="text-2xl text-zinc-400 block max-w-3xl mx-auto">
+                    Building the next generation of digital cash apps, empowering developers to create secure and scalable financial solutions.
+                  </span>
+                </h2>
+                
+                <div className="grid grid-cols-3 gap-6 max-w-6xl mx-auto mt-16">
+                  {Array(6).fill(null).map((_, index) => (
+                    <div 
+                      key={index}
+                      className="flex flex-col h-full p-8 rounded-lg 
+                        bg-purple-900/10
+                        backdrop-blur-sm
+                        border border-purple-900/20
+                        transition-all duration-300
+                        hover:bg-purple-900/15
+                        hover:border-purple-900/30
+                        hover:transform hover:scale-[1.02]"
+                    >
+                      <div className="flex items-center gap-4 mb-4">
+                        <div className="w-10 h-10 flex items-center justify-center">
+                          <img 
+                            src={cashuLogo}
+                            alt="Feature icon"
+                            className="w-8 h-8 object-contain"
+                          />
+                        </div>
+                        <h3 className="text-xl font-semibold text-white">Cashu.me</h3>
                       </div>
-                      <h3 className="text-xl font-semibold text-white">Boardwalk Cash</h3>
+                      <p className="text-gray-400 text-sm leading-relaxed">
+                        A Cashu wallet designed for fast, easy onboarding and use. Boardwalk Cash is the easiest way to send and receive cash instantly. Boardwalk is a Bitcoin platform - combining the best of eCash, Lightning and self-custody.
+                      </p>
                     </div>
-                    <p className="text-gray-400 text-sm leading-relaxed">
-                      A Cashu wallet designed for fast, easy onboarding and use. Boardwalk Cash is the easiest way to send and receive cash instantly. Boardwalk is a Bitcoin platform - combining the best of eCash, Lightning and self-custody.
-                    </p>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
             </div>
           </div>
