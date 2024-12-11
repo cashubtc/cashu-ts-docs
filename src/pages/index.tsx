@@ -3,6 +3,7 @@ import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import Layout from "@theme/Layout";
 import { useEffect, useRef } from 'react';
 import { createNoise3D } from 'simplex-noise';
+import cashuLogo from '@site/static/img/cashu-no-bg.png';
 
 export default function Home(): JSX.Element {
   const { siteConfig } = useDocusaurusContext();
@@ -42,41 +43,62 @@ export default function Home(): JSX.Element {
     container.appendChild(canvasA);
 
     // Constants
-    const particleCount = 700;
+    const particleCount = 500;
     const particlePropCount = 9;
     const particlePropsLength = particleCount * particlePropCount;
     const rangeY = 100;
     const baseTTL = 50;
     const rangeTTL = 150;
-    const baseSpeed = 0.1;
-    const rangeSpeed = 2;
-    const baseRadius = 1;
-    const rangeRadius = 4;
+    const baseSpeed = 0.05;
+    const rangeSpeed = 1;
+    const baseRadius = 0.5;
+    const rangeRadius = 2;
     const baseHue = 220;
     const rangeHue = 100;
-    const noiseSteps = 8;
+    const noiseSteps = 6;
     const xOff = 0.00125;
     const yOff = 0.00125;
-    const zOff = 0.0005;
+    const zOff = 0.0003;
 
     let center: number[] = [];
     let tick = 0;
     let particleProps: Float32Array;
     const simplex = createNoise3D();
 
+    const logoImage = new Image();
+    logoImage.src = cashuLogo;
+    const logoSize = 16;
+    let logoParticleIndex = 0; // Track which particle is the logo
+    
     // Initialize particles
     const initParticle = (i: number) => {
-      let x = rand(canvasA.width);
-      let y = center[1] + randRange(rangeY);
-      let vx = 0;
-      let vy = 0;
-      let life = 0;
-      let ttl = baseTTL + rand(rangeTTL);
-      let speed = baseSpeed + rand(rangeSpeed);
-      let radius = baseRadius + rand(rangeRadius);
-      let hue = baseHue + rand(rangeHue);
+      if (i === logoParticleIndex) {
+        // Special initialization for logo particle
+        let x = rand(canvasA.width);
+        let y = center[1] + randRange(rangeY);
+        let vx = 0;
+        let vy = 0;
+        let life = 0;
+        let ttl = Infinity;
+        let speed = baseSpeed * 1.2; // Normal speed
+        let radius = baseRadius;
+        let hue = baseHue;
 
-      particleProps.set([x, y, vx, vy, life, ttl, speed, radius, hue], i);
+        particleProps.set([x, y, vx, vy, life, ttl, speed, radius, hue], i);
+      } else {
+        // Original initialization for regular particles
+        let x = rand(canvasA.width);
+        let y = center[1] + randRange(rangeY);
+        let vx = 0;
+        let vy = 0;
+        let life = 0;
+        let ttl = baseTTL + rand(rangeTTL);
+        let speed = baseSpeed + rand(rangeSpeed);
+        let radius = baseRadius + rand(rangeRadius);
+        let hue = baseHue + rand(rangeHue);
+
+        particleProps.set([x, y, vx, vy, life, ttl, speed, radius, hue], i);
+      }
     };
 
     const rand = (n: number) => Math.random() * n;
@@ -88,16 +110,28 @@ export default function Home(): JSX.Element {
     const lerp = (n1: number, n2: number, speed: number) => (1 - speed) * n1 + speed * n2;
     const TAU = 2 * Math.PI;
 
-    const drawParticle = (x: number, y: number, x2: number, y2: number, life: number, ttl: number, radius: number, hue: number) => {
+    const drawParticle = (x: number, y: number, x2: number, y2: number, life: number, ttl: number, radius: number, hue: number, index: number) => {
       ctxA.save();
-      ctxA.lineCap = 'round';
-      ctxA.lineWidth = radius;
-      ctxA.strokeStyle = `hsla(${hue},100%,60%,${fadeInOut(life, ttl)})`;
-      ctxA.beginPath();
-      ctxA.moveTo(x, y);
-      ctxA.lineTo(x2, y2);
-      ctxA.stroke();
-      ctxA.closePath();
+      
+      if (index === logoParticleIndex) {
+        const opacity = 0.06; // Constant opacity instead of fade
+        ctxA.globalAlpha = opacity;
+        const angle = Math.atan2(y2 - y, x2 - x);
+        ctxA.translate(x, y);
+        ctxA.rotate(angle);
+        ctxA.drawImage(logoImage, -logoSize/2, -logoSize/2, logoSize, logoSize);
+      } else {
+        // Original line drawing code for all other particles
+        ctxA.lineCap = 'round';
+        ctxA.lineWidth = radius;
+        ctxA.strokeStyle = `hsla(${hue},100%,60%,${fadeInOut(life, ttl)})`;
+        ctxA.beginPath();
+        ctxA.moveTo(x, y);
+        ctxA.lineTo(x2, y2);
+        ctxA.stroke();
+        ctxA.closePath();
+      }
+      
       ctxA.restore();
     };
 
@@ -107,7 +141,14 @@ export default function Home(): JSX.Element {
 
       x = particleProps[i];
       y = particleProps[i2];
-      n = simplex(x * xOff, y * yOff, tick * zOff) * noiseSteps * TAU;
+      
+      if (i === logoParticleIndex) {
+        // Regular noise movement but with reduced range
+        n = simplex(x * xOff, y * yOff, tick * zOff) * (noiseSteps * 0.4) * TAU;
+      } else {
+        n = simplex(x * xOff, y * yOff, tick * zOff) * noiseSteps * TAU;
+      }
+
       vx = lerp(particleProps[i3], Math.cos(n), 0.5);
       vy = lerp(particleProps[i4], Math.sin(n), 0.5);
       life = particleProps[i5];
@@ -118,7 +159,7 @@ export default function Home(): JSX.Element {
       radius = particleProps[i8];
       hue = particleProps[i9];
 
-      drawParticle(x, y, x2, y2, life, ttl, radius, hue);
+      drawParticle(x, y, x2, y2, life, ttl, radius, hue, i);
 
       life++;
 
@@ -128,7 +169,13 @@ export default function Home(): JSX.Element {
       particleProps[i4] = vy;
       particleProps[i5] = life;
 
-      if (life > ttl || x < 0 || x > canvasA.width || y < 0 || y > canvasA.height) {
+      // Handle screen boundaries for logo particle
+      if (i === logoParticleIndex) {
+        if (x2 < 0) particleProps[i] = canvasA.width;
+        if (x2 > canvasA.width) particleProps[i] = 0;
+        if (y2 < 0) particleProps[i2] = canvasA.height;
+        if (y2 > canvasA.height) particleProps[i2] = 0;
+      } else if (life > ttl || x < 0 || x > canvasA.width || y < 0 || y > canvasA.height) {
         initParticle(i);
       }
     };
@@ -149,13 +196,13 @@ export default function Home(): JSX.Element {
 
     const renderGlow = () => {
       ctxB.save();
-      ctxB.filter = 'blur(8px) brightness(200%)';
+      ctxB.filter = 'blur(8px) brightness(150%)';
       ctxB.globalCompositeOperation = 'lighter';
       ctxB.drawImage(canvasA, 0, 0);
       ctxB.restore();
 
       ctxB.save();
-      ctxB.filter = 'blur(4px) brightness(200%)';
+      ctxB.filter = 'blur(4px) brightness(150%)';
       ctxB.globalCompositeOperation = 'lighter';
       ctxB.drawImage(canvasA, 0, 0);
       ctxB.restore();
