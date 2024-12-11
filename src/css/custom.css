@@ -60,11 +60,37 @@
   border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
 }
 
+/* Light mode navbar text colors for docs */
+.docs-wrapper[data-theme='light'] .navbar .navbar__link,
+.docs-wrapper[data-theme='light'] .navbar .navbar__brand,
+.docs-wrapper[data-theme='light'] .navbar .navbar-sidebar__brand {
+  color: rgba(0, 0, 0, 0.9) !important;
+}
+
+.docs-wrapper[data-theme='light'] .navbar .navbar__link:hover {
+  color: var(--ifm-color-primary) !important;
+}
+
 /* Dark mode - for both docs and homepage */
 [data-theme='dark'] .navbar,
 body:not(.docs-wrapper) .navbar {
   background: rgba(24, 24, 27, 0.7) !important;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Force light colors for navbar elements on homepage and dark mode */
+[data-theme='dark'] .navbar .navbar__link,
+[data-theme='dark'] .navbar .navbar__brand,
+[data-theme='dark'] .navbar .navbar-sidebar__brand,
+body:not(.docs-wrapper) .navbar .navbar__link,
+body:not(.docs-wrapper) .navbar .navbar__brand,
+body:not(.docs-wrapper) .navbar .navbar-sidebar__brand {
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+[data-theme='dark'] .navbar .navbar__link:hover,
+body:not(.docs-wrapper) .navbar .navbar__link:hover {
+  color: white !important;
 }
 
 /* Remove the centering styles */
