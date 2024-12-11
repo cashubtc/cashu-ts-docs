@@ -278,43 +278,36 @@ export default function Home(): JSX.Element {
       />
       <main className="h-screen bg-transparent pt-24">
         <div className="container mx-auto px-4 h-full flex flex-col">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
-            <div className="text-white space-y-6 lg:col-span-2">
-              <div className="flex gap-4 items-start">
-                <img
-                  src={require("@site/static/img/tslogo.png").default}
-                  className="w-12 h-12"
-                />
-                <div>
-                  <h1 className="text-5xl font-extrabold lg:text-6xl leading-tight">
-                    <span className="font-jersey">Cashu TS</span>
-                  </h1>
-                  <h2 className="text-3xl font-dm-mono text-purple-100 -mt-4">
-                    a lightweight library for Cashu development.
-                  </h2>
-                </div>
-              </div>
-
-              <div className="inline-block">
-                <pre className="py-2 px-4 rounded bg-purple-900/70 border-2 border-purple-900">
-                  <code className="text-purple-300">$ </code>
-                  <code>npm i @cashu/cashu-ts</code>
-                </pre>
-              </div>
-
-              <div className="flex gap-4">
-                <a
-                  className="px-6 py-3 bg-purple-900 hover:bg-purple-700 rounded-full text-white hover:no-underline hover:text-white font-medium"
-                  href={docsLink}
-                >
-                  Getting Started
-                </a>
-              </div>
+          <div className="flex flex-col h-full">
+            <div className="mb-12">
+              <h1 className="text-7xl font-extrabold mb-4 text-white">
+                <span className="font-jersey">Cashu TS</span>
+              </h1>
+              <h2 className="text-4xl font-dm-mono text-purple-100">
+                a lightweight library for Cashu development.
+              </h2>
             </div>
 
-            <div className="hidden lg:block text-white">
-              <p className="text-2xl">
-              We handle the groundwork, you ship the features. Build your Cashu app with confidence using cashu-ts.
+            <div className="mb-8">
+              <pre className="inline-block py-3 px-6 rounded bg-purple-900/70 border-2 border-purple-900">
+                <code className="text-purple-300">$ </code>
+                <code>npm i @cashu/cashu-ts</code>
+              </pre>
+            </div>
+
+            <div className="mb-auto">
+              <a
+                className="inline-block px-8 py-4 bg-purple-900 hover:bg-purple-700 rounded-full text-white hover:no-underline hover:text-white font-medium text-lg"
+                href={docsLink}
+              >
+                Start Building ↗
+              </a>
+            </div>
+
+            <div className="self-end max-w-2xl text-right">
+              <p className="text-2xl text-white/90">
+                We handle the groundwork, you ship the features. 
+                Build your Cashu app with confidence using cashu-ts.
               </p>
             </div>
           </div>
