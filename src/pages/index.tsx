@@ -288,8 +288,8 @@ export default function Home(): JSX.Element {
                 a lightweight library for Cashu development.
               </h2>
               
-              <p className="text-2xl text-white/90 mt-6 max-w-2xl">
-                We handle the groundwork, you ship the features. 
+              <p className="text-2xl text-zinc-400 mt-6 max-w-2xl">
+                We handle the groundwork, you ship the features.<br></br> 
                 Build your Cashu app with confidence using cashu-ts.
               </p>
             </div>
@@ -322,21 +322,34 @@ export default function Home(): JSX.Element {
             </div>
 
             <div className="mt-12 mb-12">
-              <h2 className="text-center text-2xl mb-8 text-gray-400">
+              <h2 className="text-center text-2xl mb-8 text-zinc-400">
                 Built with Cashu TS
-                <span className="block text-gray-500">building the next generation of digital cash apps</span>
+                <span className="block text-zinc-500">building the next generation of digital cash apps</span>
               </h2>
-              <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-8 items-center justify-items-center max-w-6xl mx-auto px-4">
-                {Array(7).fill(null).map((_, index) => (
+              <div className="grid grid-cols-3 gap-4 max-w-6xl mx-auto px-4">
+                {Array(6).fill(null).map((_, index) => (
                   <div 
                     key={index}
-                    className="flex items-center justify-center w-full opacity-70 hover:opacity-100 transition-opacity duration-300"
+                    className="flex flex-col h-full p-8 rounded-lg 
+                      bg-[rgba(88,28,135,0.05)] 
+                      border border-purple-900/20
+                      transition-all duration-300
+                      hover:bg-[rgba(88,28,135,0.1)]
+                      hover:border-purple-900/30"
                   >
-                    <img 
-                      src={cashuLogo}
-                      alt="Logo placeholder"
-                      className="max-w-[50px] h-auto"
-                    />
+                    <div className="flex items-center gap-4 mb-4">
+                      <div className="w-10 h-10 flex items-center justify-center">
+                        <img 
+                          src={cashuLogo}
+                          alt="Feature icon"
+                          className="w-8 h-8 object-contain"
+                        />
+                      </div>
+                      <h3 className="text-xl font-semibold text-white">Boardwalk Cash</h3>
+                    </div>
+                    <p className="text-gray-400 text-sm leading-relaxed">
+                      A Cashu wallet designed for fast, easy onboarding and use. Boardwalk Cash is the easiest way to send and receive cash instantly. Boardwalk is a Bitcoin platform - combining the best of eCash, Lightning and self-custody.
+                    </p>
                   </div>
                 ))}
               </div>
