@@ -43,18 +43,18 @@ export default function Home(): JSX.Element {
     container.appendChild(canvasA);
 
     // Constants
-    const particleCount = 500;
+    const particleCount = 300;
     const particlePropCount = 9;
     const particlePropsLength = particleCount * particlePropCount;
-    const rangeY = 100;
-    const baseTTL = 50;
-    const rangeTTL = 150;
-    const baseSpeed = 0.05;
-    const rangeSpeed = 1;
-    const baseRadius = 0.5;
-    const rangeRadius = 2;
-    const baseHue = 220;
-    const rangeHue = 100;
+    const rangeY = 150;
+    const baseTTL = 100;
+    const rangeTTL = 200;
+    const baseSpeed = 0.03;
+    const rangeSpeed = 0.5;
+    const baseRadius = 0.3;
+    const rangeRadius = 1;
+    const baseHue = 260;
+    const rangeHue = 40;
     const noiseSteps = 6;
     const xOff = 0.00125;
     const yOff = 0.00125;
@@ -114,17 +114,16 @@ export default function Home(): JSX.Element {
       ctxA.save();
       
       if (index === logoParticleIndex) {
-        const opacity = 0.06; // Constant opacity instead of fade
+        const opacity = 0.04;
         ctxA.globalAlpha = opacity;
         const angle = Math.atan2(y2 - y, x2 - x);
         ctxA.translate(x, y);
         ctxA.rotate(angle);
         ctxA.drawImage(logoImage, -logoSize/2, -logoSize/2, logoSize, logoSize);
       } else {
-        // Original line drawing code for all other particles
         ctxA.lineCap = 'round';
         ctxA.lineWidth = radius;
-        ctxA.strokeStyle = `hsla(${hue},100%,60%,${fadeInOut(life, ttl)})`;
+        ctxA.strokeStyle = `hsla(${hue},85%,65%,${fadeInOut(life, ttl) * 0.5})`;
         ctxA.beginPath();
         ctxA.moveTo(x, y);
         ctxA.lineTo(x2, y2);
@@ -196,13 +195,13 @@ export default function Home(): JSX.Element {
 
     const renderGlow = () => {
       ctxB.save();
-      ctxB.filter = 'blur(8px) brightness(150%)';
+      ctxB.filter = 'blur(6px) brightness(120%)';
       ctxB.globalCompositeOperation = 'lighter';
       ctxB.drawImage(canvasA, 0, 0);
       ctxB.restore();
 
       ctxB.save();
-      ctxB.filter = 'blur(4px) brightness(150%)';
+      ctxB.filter = 'blur(2px) brightness(120%)';
       ctxB.globalCompositeOperation = 'lighter';
       ctxB.drawImage(canvasA, 0, 0);
       ctxB.restore();
@@ -281,9 +280,11 @@ export default function Home(): JSX.Element {
           <div className="flex flex-col h-full">
             <div className="mb-12">
               <h1 className="text-7xl font-extrabold mb-4 text-white">
-                <span className="font-jersey">Cashu TS</span>
+                <span className="mono-text">
+                  Cashu TS
+                </span>
               </h1>
-              <h2 className="text-4xl font-dm-mono text-purple-100">
+              <h2 className="text-4xl font-dm-mono text-zinc-50">
                 a lightweight library for Cashu development.
               </h2>
               
@@ -302,7 +303,18 @@ export default function Home(): JSX.Element {
 
             <div className="mb-auto">
               <a
-                className="inline-block px-8 py-4 bg-purple-900 hover:bg-purple-700 rounded-full text-white hover:no-underline hover:text-white font-medium text-lg"
+                className="inline-block px-8 py-4 
+                bg-gradient-to-r from-purple-900 to-purple-800
+                hover:from-purple-800 hover:to-purple-700
+                text-white hover:no-underline hover:text-white/90 font-medium text-lg
+                transform transition-all duration-300 ease-out
+                hover:scale-[1.02] hover:shadow-[0_0_25px_rgba(126,34,206,0.3)]
+                active:scale-[0.98]
+                border border-purple-700/20 hover:border-purple-600/30
+                relative overflow-hidden
+                after:absolute after:inset-0 after:bg-gradient-to-r 
+                after:from-transparent after:via-white/5 after:to-transparent
+                hover:after:translate-x-full after:duration-1000"
                 href={docsLink}
               >
                 Start Building ↗
