@@ -4,7 +4,7 @@ sidebar_position: 1
 
 # Minting Proofs
 
-**Minting** is the operation of making a Lightning payment to the mint to receive some [Proofs](https://github.com/cashubtc/nuts/blob/main/00.md#proof) in return.
+**Minting** is the process of creating new [Proofs](https://github.com/cashubtc/nuts/blob/main/00.md#proof) by paying a lightning invoice issued by the mint.
 This is a three step process:
 
 1. Request the mint quote for amount `x`
