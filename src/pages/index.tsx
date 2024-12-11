@@ -276,17 +276,17 @@ export default function Home(): JSX.Element {
           height: '100%',
         }}
       />
-      <main className="h-screen bg-transparent">
+      <main className="h-screen bg-transparent pt-24">
         <div className="container mx-auto px-4 h-full flex flex-col">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-start">
-            <div className="text-white space-y-6">
-              <div className="flex gap-4 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
+            <div className="text-white space-y-6 lg:col-span-2">
+              <div className="flex gap-4 items-start">
                 <img
                   src={require("@site/static/img/tslogo.png").default}
                   className="w-12 h-12"
                 />
-                <h1 className="text-5xl font-extrabold">
-                  cashu-ts
+                <h1 className="text-5xl font-extrabold lg:text-6xl leading-tight">
+                  cashu-ts: a lightweight library for Cashu development.
                 </h1>
               </div>
 
@@ -309,7 +309,7 @@ export default function Home(): JSX.Element {
 
             <div className="hidden lg:block text-white">
               <p className="text-2xl">
-                Building Web & Node based Cashu apps has never been easier
+              Integrate Cashu functionality in minutes.
               </p>
             </div>
           </div>
