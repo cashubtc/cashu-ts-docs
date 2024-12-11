@@ -286,6 +286,11 @@ export default function Home(): JSX.Element {
               <h2 className="text-4xl font-dm-mono text-purple-100">
                 a lightweight library for Cashu development.
               </h2>
+              
+              <p className="text-2xl text-white/90 mt-6 max-w-2xl">
+                We handle the groundwork, you ship the features. 
+                Build your Cashu app with confidence using cashu-ts.
+              </p>
             </div>
 
             <div className="mb-8">
@@ -304,31 +309,25 @@ export default function Home(): JSX.Element {
               </a>
             </div>
 
-            <div className="self-end max-w-2xl text-right">
-              <p className="text-2xl text-white/90">
-                We handle the groundwork, you ship the features. 
-                Build your Cashu app with confidence using cashu-ts.
-              </p>
-            </div>
-          </div>
-
-          <div className="mt-auto mb-8">
-            <h2 className="text-white text-xl mb-4 opacity-70">
-              Trusted by developers building amazing apps
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-3xl">
-              {[1, 2, 3].map((_, index) => (
-                <div 
-                  key={index}
-                  className="aspect-square rounded-lg bg-purple-900/30 border border-purple-800/50 p-4 flex items-center justify-center hover:bg-purple-900/40 transition-all duration-300"
-                >
-                  <img 
-                    src={require("@site/static/img/tslogo.png").default}
-                    alt="TypeScript Logo"
-                    className="w-12 h-12 opacity-70"
-                  />
-                </div>
-              ))}
+            <div className="mt-12 mb-12">
+              <h2 className="text-center text-2xl mb-8 text-gray-400">
+                Built with Cashu TS
+                <span className="block text-gray-500">building the next generation of digital cash apps</span>
+              </h2>
+              <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-8 items-center justify-items-center max-w-6xl mx-auto px-4">
+                {Array(7).fill(null).map((_, index) => (
+                  <div 
+                    key={index}
+                    className="flex items-center justify-center w-full opacity-70 hover:opacity-100 transition-opacity duration-300"
+                  >
+                    <img 
+                      src={cashuLogo}
+                      alt="Logo placeholder"
+                      className="max-w-[50px] h-auto"
+                    />
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
