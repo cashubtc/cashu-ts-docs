@@ -278,46 +278,50 @@ export default function Home(): JSX.Element {
       <main className="h-screen bg-transparent pt-24">
         <div className="h-full flex flex-col">
           <div className="container mx-auto px-4">
-            <div className="mb-12">
-              <h1 className="text-7xl font-extrabold mb-4 text-white">
-                <span className="mono-text">
-                  Cashu TS
-                </span>
+            <div className="mb-12 relative">
+              <div className="absolute -z-1 blur-3xl opacity-30 animate-pulse bg-gradient-to-r from-purple-600/20 via-pink-500/20 to-blue-600/20 w-full h-[200px] top-0" />
+              
+              <h1 className="text-8xl font-extrabold mb-6 text-white bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-300">
+                <span className="mono-text">Cashu TS</span>
               </h1>
-              <h2 className="text-4xl font-dm-mono text-zinc-50">
-                a lightweight library for Cashu development.
+              <h2 className="text-4xl font-dm-mono text-zinc-50 tracking-tight">
+                A powerful toolkit for <span className="text-purple-400">Cashu development</span>.
               </h2>
               
-              <p className="text-2xl text-zinc-400 mt-6 max-w-2xl">
-                We handle the groundwork, you ship the features.<br></br> 
-                Build your Cashu app with confidence using cashu-ts.
+              <p className="text-xl text-zinc-400 mt-8 max-w-2xl leading-relaxed">
+                Build secure, scalable financial applications with confidence. 
+                Our battle-tested library handles the complexity, 
+                so you can focus on innovation.
               </p>
             </div>
 
-            <div className="mb-8">
-              <pre className="inline-block py-3 px-6 rounded bg-purple-900/70 border-2 border-purple-900">
-                <code className="text-purple-300">$ </code>
-                <code>npm i @cashu/cashu-ts</code>
+            <div className="mb-8 group">
+              <pre className="inline-block py-4 px-8 rounded-lg bg-purple-950/50 border border-purple-800/30 backdrop-blur-sm transition-all duration-300 group-hover:border-purple-700/50 group-hover:shadow-lg group-hover:shadow-purple-900/20">
+                <code className="text-purple-300 select-none">$ </code>
+                <code className="text-zinc-100">npm i @cashu/cashu-ts</code>
               </pre>
             </div>
 
             <div className="mb-auto">
               <a
-                className="inline-block px-8 py-4 
-                bg-gradient-to-r from-purple-900 to-purple-800
-                hover:from-purple-800 hover:to-purple-700
-                text-white hover:no-underline hover:text-white/90 font-medium text-lg
-                transform transition-all duration-300 ease-out
-                hover:scale-[1.02] hover:shadow-[0_0_25px_rgba(126,34,206,0.3)]
-                active:scale-[0.98]
-                border border-purple-700/20 hover:border-purple-600/30
-                relative overflow-hidden
-                after:absolute after:inset-0 after:bg-gradient-to-r 
-                after:from-transparent after:via-white/5 after:to-transparent
-                hover:after:translate-x-full after:duration-1000"
+                className="group relative inline-flex items-center gap-2 px-8 py-4 
+                  bg-gradient-to-r from-purple-600 to-purple-800
+                  hover:from-purple-500 hover:to-purple-700
+                  text-white hover:text-white
+                  font-medium text-lg rounded-lg
+                  transition-all duration-300 ease-out
+                  border border-purple-600/20"
                 href={docsLink}
               >
-                Start Building ↗
+                <span className="text-white">Start Building</span>
+                <svg 
+                  className="w-5 h-5 text-white transition-transform duration-300 group-hover:translate-x-1" 
+                  fill="none" 
+                  stroke="currentColor" 
+                  viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
               </a>
             </div>
           </div>
