@@ -8,6 +8,7 @@ import tsLogo from '@site/static/img/tslogo.png';
 import npubcashLogo from '@site/static/img/npubcash.png';
 import bwcLogo from '@site/static/img/bwc.png';
 import vpnstrLogo from '@site/static/img/vpnstr.png';
+import ndklogo from '@site/static/img/ndk.png';
 
 export default function Home(): JSX.Element {
   const { siteConfig } = useDocusaurusContext();
@@ -339,7 +340,7 @@ export default function Home(): JSX.Element {
                     Made with Cashu TS
                   </span>
                   <span className="text-2xl text-zinc-400 block max-w-3xl mx-auto">
-                  Simplifying the process of building Cashuapps.
+                  Simplifying the process of building Cashu applications.
                   </span>
                 </h2>
                 
@@ -386,7 +387,7 @@ export default function Home(): JSX.Element {
                   >
                     <div className="flex items-center gap-4 mb-4">
                       <div className="w-10 h-10 flex items-center justify-center">
-                        <img src={cashuLogo} alt="NDK logo" className="w-8 h-8 object-contain" />
+                        <img src={ndklogo} alt="NDK logo" className="w-8 h-8 object-contain" />
                       </div>
                       <h3 className="text-xl font-semibold text-white">NostrDevKit (NDK)</h3>
                     </div>

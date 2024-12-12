@@ -70,13 +70,13 @@ const config: Config = {
         },
       ],
     },
-    // announcementBar: {
-    //   id: "wip",
-    //   content: "These docs are a WORK IN PROGRESS.",
-    //   backgroundColor: "#18181b",
-    //   textColor: "#fafafa",
-    //   isCloseable: false,
-    // },
+    announcementBar: {
+      id: "wip",
+      content: "We’re actively building these docs—check back for updates.",
+      backgroundColor: "#18181b",
+      textColor: "#fafafa",
+      isCloseable: false,
+    },
     prism: {
       theme: prismThemes.oneLight,
       darkTheme: prismThemes.oneDark,

@@ -16,6 +16,10 @@
   --ifm-color-primary-lightest: #c084fc;
   --ifm-code-font-size: 95%;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+  --ifm-navbar-background-color: #ffffff;
+  --ifm-navbar-link-color: #581c87;
+  --ifm-navbar-link-hover-color: #9333ea;
+  --ifm-navbar-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
@@ -28,6 +32,28 @@
   --ifm-color-primary-lighter: #e879f9;
   --ifm-color-primary-lightest: #e879f9;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+  --ifm-navbar-background-color: #1e1b4b;
+  --ifm-navbar-link-color: #FFFFFF;
+  --ifm-navbar-link-hover-color: #c026d3;
 }
 
 /* Keep any non-navbar related utility classes you need */
+
+/* Add custom navbar styling */
+.navbar {
+  border-bottom: 1px solid rgba(147, 51, 234, 0.1);
+}
+
+[data-theme="dark"] .navbar {
+  border-bottom: 1px solid rgba(232, 121, 249, 0.1);
+}
+
+.navbar__link {
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.navbar__link--active {
+  font-weight: 600;
+  color: var(--ifm-color-primary);
+}
