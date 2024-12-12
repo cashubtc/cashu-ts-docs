@@ -313,3 +313,13 @@ html[data-theme='dark'] {
 .menu__link:hover {
   color: #d8b4fe !important; /* purple-300 */
 }
+
+/* Add contrast for the theme toggle icon in light mode */
+[data-theme='light'] .clean-btn[class*='toggleButton_'] svg path {
+  fill: var(--ifm-color-primary-darker);
+}
+
+/* Optional: Adjust hover state for better interaction feedback */
+[data-theme='light'] .clean-btn[class*='toggleButton_']:hover svg path {
+  fill: var(--ifm-color-primary-darkest);
+}
