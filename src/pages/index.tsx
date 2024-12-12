@@ -279,7 +279,7 @@ export default function Home(): JSX.Element {
           height: '100%',
         }}
       />
-      <main className="h-screen bg-transparent pt-24 overflow-x-hidden">
+      <main className="h-screen bg-transparent pt-24">
         <div className="h-full flex flex-col">
           <div className="container mx-auto px-4">
             <div className="mb-12 relative">
