@@ -5,12 +5,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/**
- * Any CSS included here will be global. The classic template
- * bundles Infima by default. Infima is a CSS framework designed to
- * work well for content-centric websites.
- */
-
 /* You can override the default Infima variables here. */
 :root {
   --ifm-color-primary: #9333ea;
@@ -36,73 +30,4 @@
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
 
-@layer utilities {
-  .font-jersey {
-    font-family: 'Jersey 20', sans-serif;
-  }
-}
-
-/* Remove all these navbar-related styles */
-/* Base navbar styles */
-.navbar {
-  /* Remove all navbar styles */
-}
-
-/* Light mode - only for docs pages */
-.docs-wrapper[data-theme='light'] .navbar {
-  /* Remove */
-}
-
-/* Light mode navbar text colors for docs */
-.docs-wrapper[data-theme='light'] .navbar .navbar__link,
-.docs-wrapper[data-theme='light'] .navbar .navbar__brand,
-.docs-wrapper[data-theme='light'] .navbar .navbar-sidebar__brand {
-  /* Remove */
-}
-
-/* Remove all other navbar-related styles including: */
-- .navbar__toggle styles
-- .navbar__brand styles
-- .navbar__logo styles
-- .navbar__item styles
-- .navbar-docs-link styles
-- .header-github-link styles
-- All navbar media queries
-
-html[data-theme='dark'] {
-  --ifm-link-color: #c084fc; /* purple-400 */
-  --ifm-link-hover-color: #d8b4fe; /* purple-300 */
-  --ifm-code-background: rgba(147,51,234,0.1); /* purple-600/10 */
-  --ifm-pre-background: rgba(88,28,135,0.2); /* purple-800/20 */
-  --docusaurus-highlighted-code-line-bg: rgba(147,51,234,0.2); /* purple-600/20 */
-  
-  /* Sidebar and navigation */
-  --ifm-menu-color: #f9fafb; /* zinc-50 */
-  --ifm-menu-color-background-active: rgba(147,51,234,0.1); /* purple-600/10 */
-  --ifm-menu-color-background-hover: rgba(147,51,234,0.05); /* purple-600/5 */
-}
-
-/* Add blur effect to navbar */
-.navbar {
-  backdrop-filter: blur(8px);
-}
-
-/* Style active sidebar items */
-.menu__link--active {
-  color: #c084fc !important; /* purple-400 */
-}
-
-/* Style sidebar item hover */
-.menu__link:hover {
-  color: #d8b4fe !important; /* purple-300 */
-}
-
-/* Add contrast for the theme toggle icon in light mode */
-[data-theme='light'] .clean-btn[class*='toggleButton_'] svg path {
-  fill: var(--ifm-color-primary-darker);
-}
-
-/* Optional: Adjust hover state for better interaction feedback */
-[data-theme='light'] .clean-btn[class*='toggleButton_']:hover svg path {
-  fill: var(--ifm-color-primary-darkest);
-}
+/* Keep any non-navbar related utility classes you need */
