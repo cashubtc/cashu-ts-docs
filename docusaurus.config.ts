@@ -52,33 +52,23 @@ const config: Config = {
     image: "img/docusaurus-social-card.jpg",
     navbar: {
       title: "Cashu TS",
-      style: "dark",
+      logo: {
+        alt: "Cashu-TS Logo",
+        src: "img/tslogo.png",
+      },
       items: [
-        // Main Documentation
         {
           type: "docSidebar",
           sidebarId: "tutorialSidebar",
           position: "left",
           label: "Docs",
-          className: 'navbar-docs-link',
         },
-        // GitHub link
         {
           href: 'https://github.com/cashubtc/cashu-ts',
+          label: 'GitHub',
           position: 'right',
-          className: 'header-github-link',
-          'aria-label': 'GitHub repository',
         },
       ],
-      logo: {
-        alt: "Cashu-TS Logo",
-        src: "img/tslogo.png",
-        srcDark: "img/tslogo.png",
-        target: "_self",
-        width: 32,
-        height: 32,
-        className: "mr-2",
-      },
     },
     // announcementBar: {
     //   id: "wip",

@@ -42,249 +42,32 @@
   }
 }
 
+/* Remove all these navbar-related styles */
 /* Base navbar styles */
 .navbar {
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(10px);
-  background-color: rgba(24, 24, 27, 0.8);
-  width: 100% !important;
-  margin: 0 !important;
-  border-radius: 0 !important;
-  padding-left: 6rem !important;
-  padding-right: 6rem !important;
-  z-index: 100 !important;
+  /* Remove all navbar styles */
 }
 
 /* Light mode - only for docs pages */
 .docs-wrapper[data-theme='light'] .navbar {
-  background: rgba(255, 255, 255, 0.8) !important;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
+  /* Remove */
 }
 
 /* Light mode navbar text colors for docs */
 .docs-wrapper[data-theme='light'] .navbar .navbar__link,
 .docs-wrapper[data-theme='light'] .navbar .navbar__brand,
 .docs-wrapper[data-theme='light'] .navbar .navbar-sidebar__brand {
-  color: rgba(0, 0, 0, 0.9) !important;
+  /* Remove */
 }
 
-.docs-wrapper[data-theme='light'] .navbar .navbar__link:hover {
-  color: var(--ifm-color-primary) !important;
-}
-
-/* Dark mode - for both docs and homepage */
-[data-theme='dark'] .navbar,
-body:not(.docs-wrapper) .navbar {
-  background: rgba(24, 24, 27, 0.7) !important;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
-}
-
-/* Force light colors for navbar elements on homepage and dark mode */
-[data-theme='dark'] .navbar .navbar__link,
-[data-theme='dark'] .navbar .navbar__brand,
-[data-theme='dark'] .navbar .navbar-sidebar__brand,
-body:not(.docs-wrapper) .navbar .navbar__link,
-body:not(.docs-wrapper) .navbar .navbar__brand,
-body:not(.docs-wrapper) .navbar .navbar-sidebar__brand {
-  color: rgba(255, 255, 255, 0.9) !important;
-}
-
-[data-theme='dark'] .navbar .navbar__link:hover,
-body:not(.docs-wrapper) .navbar .navbar__link:hover {
-  color: white !important;
-}
-
-/* Remove the centering styles */
-nav.navbar {
-  position: fixed !important;
-  left: 0 !important;
-  transform: none !important;
-  top: 0 !important;
-  border-top: none !important;
-}
-
-/* Keep the content adjustment */
-.main-wrapper {
-  padding-top: 4rem !important;
-}
-
-/* Hide hamburger menu */
-.navbar__toggle {
-  display: none !important;
-}
-
-/* Hide theme switcher by default */
-.navbar .clean-btn[class*='toggleButton'] {
-  display: none !important;
-}
-
-/* Show theme switcher only on docs pages */
-.docs-wrapper .navbar .clean-btn[class*='toggleButton'] {
-  display: flex !important;
-}
-
-/* Ensure GitHub icon is always visible */
-.header-github-link {
-  display: flex !important;
-}
-
-.nabla-text {
-  font-family: 'Azeret Mono', monospace;
-  color: white;
-  font-weight: 700;
-}
-
-@keyframes gradient-x {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-.animate-gradient-x {
-  background-size: 200% 100%;
-  animation: gradient-x 3s ease infinite;
-}
-
-/* GitHub icon styling */
-.header-github-link {
-  padding: 4px;
-  margin-right: 8px;
-}
-
-.header-github-link:hover {
-  opacity: 0.7;
-}
-
-/* Light mode GitHub icon */
-[data-theme='light'] .header-github-link:before {
-  content: '';
-  width: 24px;
-  height: 24px;
-  display: flex;
-  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12' fill='%23181717'/%3E%3C/svg%3E") no-repeat;
-}
-
-/* Dark mode GitHub icon */
-[data-theme='dark'] .header-github-link:before {
-  content: '';
-  width: 24px;
-  height: 24px;
-  display: flex;
-  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12' fill='%23ffffff'/%3E%3C/svg%3E") no-repeat;
-}
-
-/* Quick Start button styling */
-.quick-start-button {
-  background: linear-gradient(90deg, #646cff 0%, #8b5cf6 100%);
-  color: white !important;
-  padding: 0.5rem 1rem !important;
-  border-radius: 9999px;
-  font-weight: 600;
-  margin-left: 0.5rem;
-  transition: all 0.3s ease;
-}
-
-.quick-start-button:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(100, 108, 255, 0.3);
-}
-
-/* Navbar brand and logo adjustments */
-.navbar__brand {
-  font-weight: 700;
-}
-
-.navbar__logo {
-  margin-right: 1rem !important;
-  transition: transform 0.2s ease;
-}
-
-.navbar__logo:hover {
-  transform: rotate(-5deg);
-}
-
-/* Make navbar items more visible on hover */
-.navbar__item {
-  transition: opacity 0.2s ease;
-}
-
-.navbar__item:hover {
-  opacity: 0.8;
-}
-
-/* Navbar customization */
-.navbar {
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(10px);
-  background-color: rgba(24, 24, 27, 0.8);
-  width: 100% !important;
-  margin: 0 !important;
-  border-radius: 0 !important;
-  padding-left: 6rem !important;
-  padding-right: 6rem !important;
-  z-index: 100 !important;
-}
-
-/* Navbar title styling */
-.navbar__title {
-  font-weight: 600;
-  color: white !important;
-}
-
-/* For light mode, if you want a different color */
-[data-theme='light'] .navbar__title {
-  color: rgba(0, 0, 0, 0.9) !important;
-}
-
-/* Custom styling for the docs link */
-.navbar-docs-link {
-  font-weight: 500;
-  padding: 0.5rem 1rem;
-  border-radius: 0.375rem;
-  transition: all 0.2s;
-}
-
-.navbar-docs-link:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-}
-
-/* Enhance the GitHub icon */
-.header-github-link:before {
-  content: '';
-  width: 24px;
-  height: 24px;
-  display: flex;
-  background: url("data:image/svg+xml,...") no-repeat;
-}
-
-/* Keep hamburger hidden but fix alignment */
-.navbar__toggle {
-  display: none !important;
-}
-
-/* Fix mobile navbar alignment */
-.navbar {
-  display: flex !important;
-  justify-content: flex-start !important;  /* Align to the left */
-  padding-left: 1rem !important;
-  padding-right: 1rem !important;
-}
-
-@media (min-width: 768px) {
-  .navbar {
-    padding-left: 6rem !important;
-    padding-right: 6rem !important;
-  }
-}
-
-/* Ensure items are properly spaced */
-.navbar__items {
-  justify-content: flex-start !important;
-}
-
-.navbar__items--right {
-  margin-left: auto !important;
-}
+/* Remove all other navbar-related styles including: */
+- .navbar__toggle styles
+- .navbar__brand styles
+- .navbar__logo styles
+- .navbar__item styles
+- .navbar-docs-link styles
+- .header-github-link styles
+- All navbar media queries
 
 html[data-theme='dark'] {
   --ifm-link-color: #c084fc; /* purple-400 */
