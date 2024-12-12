@@ -289,9 +289,8 @@ export default function Home(): JSX.Element {
               </h2>
               
               <p className="text-xl text-zinc-400 mt-8 max-w-2xl leading-relaxed">
-                Build secure, scalable financial applications with confidence. 
-                Our battle-tested library handles the complexity, 
-                so you can focus on innovation.
+                Build secure, scalable Cashu applications with confidence.<br></br>
+                We handle complexity, you ship.
               </p>
             </div>
 

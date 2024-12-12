@@ -51,31 +51,42 @@ const config: Config = {
     // Replace with your project's social card
     image: "img/docusaurus-social-card.jpg",
     navbar: {
-      title: "Cashu-TS",
+      title: "Cashu TS",
+      style: "dark",
       items: [
+        // Main Documentation
         {
           type: "docSidebar",
           sidebarId: "tutorialSidebar",
           position: "left",
           label: "Docs",
+          className: 'navbar-docs-link',
+        },
+        // GitHub link
+        {
+          href: 'https://github.com/cashubtc/cashu-ts',
+          position: 'right',
+          className: 'header-github-link',
+          'aria-label': 'GitHub repository',
         },
       ],
       logo: {
-        alt: "Site Logo",
+        alt: "Cashu-TS Logo",
         src: "img/tslogo.png",
+        srcDark: "img/tslogo.png",
         target: "_self",
         width: 32,
         height: 32,
-        className: "custom-navbar-logo-class",
+        className: "mr-2",
       },
     },
-    announcementBar: {
-      id: "wip",
-      content: "These docs are a WORK IN PROGRESS.",
-      backgroundColor: "#18181b",
-      textColor: "#fafafa",
-      isCloseable: false,
-    },
+    // announcementBar: {
+    //   id: "wip",
+    //   content: "These docs are a WORK IN PROGRESS.",
+    //   backgroundColor: "#18181b",
+    //   textColor: "#fafafa",
+    //   isCloseable: false,
+    // },
     prism: {
       theme: prismThemes.oneLight,
       darkTheme: prismThemes.oneDark,
