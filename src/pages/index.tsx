@@ -276,21 +276,21 @@ export default function Home(): JSX.Element {
           height: '100%',
         }}
       />
-      <main className="h-screen bg-transparent pt-24">
+      <main className="h-screen bg-transparent pt-24 overflow-x-hidden">
         <div className="h-full flex flex-col">
           <div className="container mx-auto px-4">
             <div className="mb-12 relative">
               <div className="absolute -z-1 blur-3xl opacity-30 animate-pulse bg-gradient-to-r from-purple-600/20 via-pink-500/20 to-blue-600/20 w-full h-[200px] top-0" />
               
-              <h1 className="text-8xl font-extrabold mb-6 text-white bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-300">
+              <h1 className="text-4xl md:text-8xl font-extrabold mb-6 text-white bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-300">
                 <span className="mono-text">Cashu TS</span>
               </h1>
-              <h2 className="text-4xl font-dm-mono text-zinc-50 tracking-tight">
+              <h2 className="text-2xl md:text-4xl font-dm-mono text-zinc-50 tracking-tight">
                 A powerful toolkit for <span className="text-purple-400">Cashu development</span>.
               </h2>
               
-              <p className="text-xl text-zinc-400 mt-8 max-w-2xl leading-relaxed">
-                Build secure, scalable Cashu applications with confidence.<br></br>
+              <p className="text-lg md:text-xl text-zinc-400 mt-8 max-w-2xl leading-relaxed">
+                Build secure, scalable Cashu applications with confidence.<br className="hidden md:block"></br>
                 We handle complexity, you ship.
               </p>
             </div>
@@ -340,11 +340,11 @@ export default function Home(): JSX.Element {
                   </span>
                 </h2>
                 
-                <div className="grid grid-cols-3 gap-6 max-w-6xl mx-auto mt-16">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto mt-16">
                   {Array(6).fill(null).map((_, index) => (
                     <div 
                       key={index}
-                      className="flex flex-col h-full p-8 rounded-lg 
+                      className="flex flex-col h-full p-4 md:p-8 rounded-lg 
                         bg-purple-900/10
                         backdrop-blur-sm
                         border border-purple-900/20
@@ -374,10 +374,10 @@ export default function Home(): JSX.Element {
           </div>
 
           <div className="w-full">
-            <footer className="py-16 relative bg-gradient-to-b from-purple-950/5 via-purple-950/10 to-purple-950/20">
+            <footer className="py-8 md:py-16 relative bg-gradient-to-b from-purple-950/5 via-purple-950/10 to-purple-950/20">
               <div className="absolute inset-0 backdrop-blur-[2px]" />
               <div className="container mx-auto px-4 relative">
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
                   {/* Logo Column */}
                   <div className="flex items-start">
                     <div className="flex items-center gap-4">
