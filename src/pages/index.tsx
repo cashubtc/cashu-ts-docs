@@ -3,8 +3,11 @@ import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import Layout from "@theme/Layout";
 import { useEffect, useRef } from 'react';
 import { createNoise3D } from 'simplex-noise';
-import cashuLogo from '@site/static/img/cashu-no-bg.png';
+import cashuLogo from '@site/static/img/Cashume.png';
 import tsLogo from '@site/static/img/tslogo.png';
+import npubcashLogo from '@site/static/img/npubcash.png';
+import bwcLogo from '@site/static/img/bwc.png';
+import vpnstrLogo from '@site/static/img/vpnstr.png';
 
 export default function Home(): JSX.Element {
   const { siteConfig } = useDocusaurusContext();
@@ -333,41 +336,98 @@ export default function Home(): JSX.Element {
               <div className="container mx-auto px-4 relative">
                 <h2 className="text-center mb-8">
                   <span className="text-4xl font-extrabold text-white block mb-4">
-                    Built with Cashu TS
+                    Made with Cashu TS
                   </span>
                   <span className="text-2xl text-zinc-400 block max-w-3xl mx-auto">
-                    Building the next generation of digital cash apps, empowering developers to create secure and scalable financial solutions.
+                  Simplifying the process of building Cashuapps.
                   </span>
                 </h2>
                 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto mt-16">
-                  {Array(6).fill(null).map((_, index) => (
-                    <div 
-                      key={index}
-                      className="flex flex-col h-full p-4 md:p-8 rounded-lg 
-                        bg-purple-900/10
-                        backdrop-blur-sm
-                        border border-purple-900/20
-                        transition-all duration-300
-                        hover:bg-purple-900/15
-                        hover:border-purple-900/30
-                        hover:transform hover:scale-[1.02]"
-                    >
-                      <div className="flex items-center gap-4 mb-4">
-                        <div className="w-10 h-10 flex items-center justify-center">
-                          <img 
-                            src={cashuLogo}
-                            alt="Feature icon"
-                            className="w-8 h-8 object-contain"
-                          />
-                        </div>
-                        <h3 className="text-xl font-semibold text-white">Cashu.me</h3>
+                  {/* Cashu.me */}
+                  <div className="flex flex-col h-full p-4 md:p-8 rounded-lg 
+                    bg-purple-900/10 backdrop-blur-sm border border-purple-900/20
+                    transition-all duration-300 hover:bg-purple-900/15
+                    hover:border-purple-900/30 hover:transform hover:scale-[1.02]"
+                  >
+                    <div className="flex items-center gap-4 mb-4">
+                      <div className="w-10 h-10 flex items-center justify-center">
+                        <img src={cashuLogo} alt="Cashu.me logo" className="w-8 h-8 object-contain" />
                       </div>
-                      <p className="text-gray-400 text-sm leading-relaxed">
-                        A Cashu wallet designed for fast, easy onboarding and use. Boardwalk Cash is the easiest way to send and receive cash instantly. Boardwalk is a Bitcoin platform - combining the best of eCash, Lightning and self-custody.
-                      </p>
+                      <h3 className="text-xl font-semibold text-white">Cashu.me</h3>
                     </div>
-                  ))}
+                    <p className="text-gray-400 text-sm leading-relaxed">
+                      A modern web wallet built with Quasar and Vue.js, leveraging TypeScript for enhanced reliability. Experience seamless eCash transactions in a user-friendly interface.
+                    </p>
+                  </div>
+
+                  {/* VPNSTR */}
+                  <div className="flex flex-col h-full p-4 md:p-8 rounded-lg 
+                    bg-purple-900/10 backdrop-blur-sm border border-purple-900/20
+                    transition-all duration-300 hover:bg-purple-900/15
+                    hover:border-purple-900/30 hover:transform hover:scale-[1.02]"
+                  >
+                    <div className="flex items-center gap-4 mb-4">
+                      <div className="w-10 h-10 flex items-center justify-center">
+                        <img src={vpnstrLogo} alt="VPNSTR logo" className="w-8 h-8 object-contain" />
+                      </div>
+                      <h3 className="text-xl font-semibold text-white">VPNSTR</h3>
+                    </div>
+                    <p className="text-gray-400 text-sm leading-relaxed">
+                      A privacy-focused VPN service accepting Bitcoin Lightning and Cashu payments. Designed for users who prioritize anonymity and secure internet access.
+                    </p>
+                  </div>
+
+                  {/* NostrDevKit */}
+                  <div className="flex flex-col h-full p-4 md:p-8 rounded-lg 
+                    bg-purple-900/10 backdrop-blur-sm border border-purple-900/20
+                    transition-all duration-300 hover:bg-purple-900/15
+                    hover:border-purple-900/30 hover:transform hover:scale-[1.02]"
+                  >
+                    <div className="flex items-center gap-4 mb-4">
+                      <div className="w-10 h-10 flex items-center justify-center">
+                        <img src={cashuLogo} alt="NDK logo" className="w-8 h-8 object-contain" />
+                      </div>
+                      <h3 className="text-xl font-semibold text-white">NostrDevKit (NDK)</h3>
+                    </div>
+                    <p className="text-gray-400 text-sm leading-relaxed">
+                      A comprehensive development kit for building Nostr applications. NDK simplifies the creation of relays, clients, and other Nostr-based solutions with robust tooling.
+                    </p>
+                  </div>
+
+                  {/* Boardwalk Cash */}
+                  <div className="flex flex-col h-full p-4 md:p-8 rounded-lg 
+                    bg-purple-900/10 backdrop-blur-sm border border-purple-900/20
+                    transition-all duration-300 hover:bg-purple-900/15
+                    hover:border-purple-900/30 hover:transform hover:scale-[1.02]"
+                  >
+                    <div className="flex items-center gap-4 mb-4">
+                      <div className="w-10 h-10 flex items-center justify-center">
+                        <img src={bwcLogo} alt="Boardwalk Cash logo" className="w-8 h-8 object-contain" />
+                      </div>
+                      <h3 className="text-xl font-semibold text-white">Boardwalk Cash</h3>
+                    </div>
+                    <p className="text-gray-400 text-sm leading-relaxed">
+                      A dollar-based CashuBTC wallet integrating Bitcoin and Nostr. Offering a seamless experience for managing digital cash with built-in social features.
+                    </p>
+                  </div>
+
+                  {/* Npubcash */}
+                  <div className="flex flex-col h-full p-4 md:p-8 rounded-lg 
+                    bg-purple-900/10 backdrop-blur-sm border border-purple-900/20
+                    transition-all duration-300 hover:bg-purple-900/15
+                    hover:border-purple-900/30 hover:transform hover:scale-[1.02]"
+                  >
+                    <div className="flex items-center gap-4 mb-4">
+                      <div className="w-10 h-10 flex items-center justify-center">
+                        <img src={npubcashLogo} alt="Npubcash logo" className="w-8 h-8 object-contain" />
+                      </div>
+                      <h3 className="text-xl font-semibold text-white">Npubcash</h3>
+                    </div>
+                    <p className="text-gray-400 text-sm leading-relaxed">
+                      An innovative LNURL service that generates and manages tokens for received payments, enabling seamless offline-to-online transaction experiences.
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
