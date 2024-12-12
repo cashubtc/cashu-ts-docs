@@ -3,6 +3,7 @@ import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import Layout from "@theme/Layout";
 import { useEffect, useRef } from 'react';
 import { createNoise3D } from 'simplex-noise';
+import { useColorMode } from '@docusaurus/theme-common';
 import cashuLogo from '@site/static/img/Cashume.png';
 import tsLogo from '@site/static/img/tslogo.png';
 import npubcashLogo from '@site/static/img/npubcash.png';
@@ -10,13 +11,16 @@ import bwcLogo from '@site/static/img/bwc.png';
 import vpnstrLogo from '@site/static/img/vpnstr.png';
 import ndklogo from '@site/static/img/ndk.png';
 
-export default function Home(): JSX.Element {
+function HomeContent(): JSX.Element {
+  const { colorMode } = useColorMode();
   const { siteConfig } = useDocusaurusContext();
   const docsLink = useBaseUrl("docs/Introduction/getting_started");
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const animationFrameRef = useRef<number>();
   
-  const backgroundColor = 'hsla(260,40%,5%,1)';
+  const backgroundColor = colorMode === 'dark' 
+    ? 'hsla(260,40%,5%,1)' 
+    : 'hsla(260,40%,97%,1)';
   
   useEffect(() => {
     console.log('Effect running');
@@ -26,7 +30,6 @@ export default function Home(): JSX.Element {
       return;
     }
 
-    // Create two canvases (one for drawing, one for display)
     const canvasA = document.createElement('canvas');
     const canvasB = canvasRef.current;
     if (!canvasB) {
@@ -43,11 +46,9 @@ export default function Home(): JSX.Element {
 
     console.log('Canvas setup complete');
 
-    // Make sure canvasA is also added to the DOM
     canvasA.style.display = 'none';
     container.appendChild(canvasA);
 
-    // Constants
     const particleCount = 300;
     const particlePropCount = 9;
     const particlePropsLength = particleCount * particlePropCount;
@@ -58,7 +59,7 @@ export default function Home(): JSX.Element {
     const rangeSpeed = 0.5;
     const baseRadius = 0.3;
     const rangeRadius = 1;
-    const baseHue = 260;
+    const baseHue = colorMode === 'dark' ? 260 : 230;
     const rangeHue = 40;
     const noiseSteps = 6;
     const xOff = 0.00125;
@@ -73,25 +74,22 @@ export default function Home(): JSX.Element {
     const logoImage = new Image();
     logoImage.src = cashuLogo;
     const logoSize = 16;
-    let logoParticleIndex = 0; // Track which particle is the logo
+    let logoParticleIndex = 0;
     
-    // Initialize particles
     const initParticle = (i: number) => {
       if (i === logoParticleIndex) {
-        // Special initialization for logo particle
         let x = rand(canvasA.width);
         let y = center[1] + randRange(rangeY);
         let vx = 0;
         let vy = 0;
         let life = 0;
         let ttl = Infinity;
-        let speed = baseSpeed * 1.2; // Normal speed
+        let speed = baseSpeed * 1.2;
         let radius = baseRadius;
         let hue = baseHue;
 
         particleProps.set([x, y, vx, vy, life, ttl, speed, radius, hue], i);
       } else {
-        // Original initialization for regular particles
         let x = rand(canvasA.width);
         let y = center[1] + randRange(rangeY);
         let vx = 0;
@@ -119,7 +117,7 @@ export default function Home(): JSX.Element {
       ctxA.save();
       
       if (index === logoParticleIndex) {
-        const opacity = 0.04;
+        const opacity = colorMode === 'dark' ? 0.04 : 0.03;
         ctxA.globalAlpha = opacity;
         const angle = Math.atan2(y2 - y, x2 - x);
         ctxA.translate(x, y);
@@ -128,7 +126,10 @@ export default function Home(): JSX.Element {
       } else {
         ctxA.lineCap = 'round';
         ctxA.lineWidth = radius;
-        ctxA.strokeStyle = `hsla(${hue},85%,65%,${fadeInOut(life, ttl) * 0.5})`;
+        const saturation = colorMode === 'dark' ? '85%' : '70%';
+        const lightness = colorMode === 'dark' ? '65%' : '60%';
+        const opacity = colorMode === 'dark' ? 0.5 : 0.4;
+        ctxA.strokeStyle = `hsla(${hue},${saturation},${lightness},${fadeInOut(life, ttl) * opacity})`;
         ctxA.beginPath();
         ctxA.moveTo(x, y);
         ctxA.lineTo(x2, y2);
@@ -147,7 +148,6 @@ export default function Home(): JSX.Element {
       y = particleProps[i2];
       
       if (i === logoParticleIndex) {
-        // Regular noise movement but with reduced range
         n = simplex(x * xOff, y * yOff, tick * zOff) * (noiseSteps * 0.4) * TAU;
       } else {
         n = simplex(x * xOff, y * yOff, tick * zOff) * noiseSteps * TAU;
@@ -173,7 +173,6 @@ export default function Home(): JSX.Element {
       particleProps[i4] = vy;
       particleProps[i5] = life;
 
-      // Handle screen boundaries for logo particle
       if (i === logoParticleIndex) {
         if (x2 < 0) particleProps[i] = canvasA.width;
         if (x2 > canvasA.width) particleProps[i] = 0;
@@ -219,7 +218,6 @@ export default function Home(): JSX.Element {
       ctxB.restore();
     };
 
-    // Initialize
     resize();
     particleProps = new Float32Array(particlePropsLength);
     
@@ -261,13 +259,10 @@ export default function Home(): JSX.Element {
       window.removeEventListener('resize', resize);
       container.removeChild(canvasA);
     };
-  }, []);
+  }, [colorMode]);
 
   return (
-    <Layout
-      title={`Hello from ${siteConfig.title}`}
-      description="Description will go into a meta tag in <head />"
-    >
+    <>
       <canvas 
         ref={canvasRef} 
         className="fixed top-0 left-0 w-full h-full -z-10"
@@ -284,25 +279,43 @@ export default function Home(): JSX.Element {
         <div className="h-full flex flex-col">
           <div className="container mx-auto px-4">
             <div className="mb-12 relative">
-              <div className="absolute -z-1 blur-3xl opacity-30 animate-pulse bg-gradient-to-r from-purple-600/20 via-pink-500/20 to-blue-600/20 w-full h-[200px] top-0" />
+              <div className={`absolute -z-1 blur-3xl opacity-30 animate-pulse 
+                bg-gradient-to-r 
+                ${colorMode === 'dark' 
+                  ? 'from-purple-600/20 via-pink-500/20 to-blue-600/20'
+                  : 'from-purple-400/30 via-pink-300/30 to-blue-400/30'} 
+                w-full h-[200px] top-0`} />
               
-              <h1 className="text-4xl md:text-8xl font-extrabold mb-6 text-white bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-300">
+              <h1 className={`text-4xl md:text-8xl font-extrabold mb-6 
+                ${colorMode === 'dark' ? 'text-white' : 'text-gray-900'}`}>
                 <span className="mono-text">Cashu TS</span>
               </h1>
-              <h2 className="text-2xl md:text-4xl font-dm-mono text-zinc-50 tracking-tight">
-                A powerful toolkit for <span className="text-purple-400">Cashu development</span>.
+              
+              <h2 className={`text-2xl md:text-4xl font-dm-mono 
+                ${colorMode === 'dark' ? 'text-zinc-50' : 'text-zinc-800'} tracking-tight`}>
+                A powerful toolkit for <span className={colorMode === 'dark' ? 'text-purple-400' : 'text-purple-600'}>Cashu development</span>.
               </h2>
               
-              <p className="text-lg md:text-xl text-zinc-400 mt-8 max-w-2xl leading-relaxed">
-                Build secure, scalable Cashu applications with confidence.<br className="hidden md:block"></br>
+              <p className={`text-lg md:text-xl 
+                ${colorMode === 'dark' ? 'text-zinc-400' : 'text-zinc-600'} 
+                mt-8 max-w-2xl leading-relaxed`}>
+                Build secure, scalable Cashu applications with confidence.<br className="hidden md:block" />
                 We handle complexity, you ship.
               </p>
             </div>
 
             <div className="mb-8 group">
-              <pre className="inline-block py-4 px-8 rounded-lg bg-purple-950/50 border border-purple-800/30 backdrop-blur-sm transition-all duration-300 group-hover:border-purple-700/50 group-hover:shadow-lg group-hover:shadow-purple-900/20">
-                <code className="text-purple-300 select-none">$ </code>
-                <code className="text-zinc-100">npm i @cashu/cashu-ts</code>
+              <pre className={`inline-block py-4 px-8 rounded-lg 
+                ${colorMode === 'dark' 
+                  ? 'bg-purple-950/50 border-purple-800/30' 
+                  : 'bg-purple-100/50 border-purple-200/50'} 
+                border backdrop-blur-sm transition-all duration-300 
+                ${colorMode === 'dark'
+                  ? 'group-hover:border-purple-700/50'
+                  : 'group-hover:border-purple-300/50'} 
+                group-hover:shadow-lg group-hover:shadow-purple-900/20`}>
+                <code className={colorMode === 'dark' ? 'text-purple-300' : 'text-purple-700'}>$ </code>
+                <code className={colorMode === 'dark' ? 'text-zinc-100' : 'text-zinc-700'}>npm i @cashu/cashu-ts</code>
               </pre>
             </div>
 
@@ -332,100 +345,149 @@ export default function Home(): JSX.Element {
 
           <div className="w-full mt-24">
             <div className="relative w-full py-24">
-              <div className="absolute inset-0 bg-purple-950/5 backdrop-blur-sm" />
+              <div className={`absolute inset-0 
+                ${colorMode === 'dark' ? 'bg-purple-950/5' : 'bg-white/70'} 
+                backdrop-blur-sm`} />
               
               <div className="container mx-auto px-4 relative">
                 <h2 className="text-center mb-8">
-                  <span className="text-4xl font-extrabold text-white block mb-4">
+                  <span className={`text-4xl font-extrabold block mb-4
+                    ${colorMode === 'dark' ? 'text-white' : 'text-gray-900'}`}>
                     Made with Cashu TS
                   </span>
-                  <span className="text-2xl text-zinc-400 block max-w-3xl mx-auto">
-                  Simplifying the process of building Cashu applications.
+                  <span className={`text-2xl block max-w-3xl mx-auto
+                    ${colorMode === 'dark' ? 'text-zinc-400' : 'text-gray-600'}`}>
+                    Simplifying the process of building Cashu applications.
                   </span>
                 </h2>
                 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto mt-16">
                   {/* Cashu.me */}
-                  <div className="flex flex-col h-full p-4 md:p-8 rounded-lg 
-                    bg-purple-900/10 backdrop-blur-sm border border-purple-900/20
-                    transition-all duration-300 hover:bg-purple-900/15
-                    hover:border-purple-900/30 hover:transform hover:scale-[1.02]"
-                  >
+                  <div className={`flex flex-col h-full p-4 md:p-8 rounded-lg 
+                    ${colorMode === 'dark' 
+                      ? 'bg-purple-900/10 border-purple-900/20' 
+                      : 'bg-white/80 border-purple-100'} 
+                    backdrop-blur-sm border
+                    transition-all duration-300 
+                    ${colorMode === 'dark'
+                      ? 'hover:bg-purple-900/15 hover:border-purple-900/30'
+                      : 'hover:bg-white/90 hover:border-purple-200'}
+                    hover:transform hover:scale-[1.02]`}>
                     <div className="flex items-center gap-4 mb-4">
                       <div className="w-10 h-10 flex items-center justify-center">
                         <img src={cashuLogo} alt="Cashu.me logo" className="w-8 h-8 object-contain" />
                       </div>
-                      <h3 className="text-xl font-semibold text-white">Cashu.me</h3>
+                      <h3 className={`text-xl font-semibold 
+                        ${colorMode === 'dark' ? 'text-white' : 'text-gray-900'}`}>
+                        Cashu.me
+                      </h3>
                     </div>
-                    <p className="text-gray-400 text-sm leading-relaxed">
+                    <p className={`text-sm leading-relaxed
+                      ${colorMode === 'dark' ? 'text-gray-400' : 'text-gray-600'}`}>
                       A modern web wallet built with Quasar and Vue.js, leveraging TypeScript for enhanced reliability. Experience seamless eCash transactions in a user-friendly interface.
                     </p>
                   </div>
 
                   {/* VPNSTR */}
-                  <div className="flex flex-col h-full p-4 md:p-8 rounded-lg 
-                    bg-purple-900/10 backdrop-blur-sm border border-purple-900/20
-                    transition-all duration-300 hover:bg-purple-900/15
-                    hover:border-purple-900/30 hover:transform hover:scale-[1.02]"
-                  >
+                  <div className={`flex flex-col h-full p-4 md:p-8 rounded-lg 
+                    ${colorMode === 'dark' 
+                      ? 'bg-purple-900/10 border-purple-900/20' 
+                      : 'bg-white/80 border-purple-100'}
+                    backdrop-blur-sm border
+                    transition-all duration-300 
+                    ${colorMode === 'dark'
+                      ? 'hover:bg-purple-900/15 hover:border-purple-900/30'
+                      : 'hover:bg-white/90 hover:border-purple-200'}
+                    hover:transform hover:scale-[1.02]`}>
                     <div className="flex items-center gap-4 mb-4">
                       <div className="w-10 h-10 flex items-center justify-center">
                         <img src={vpnstrLogo} alt="VPNSTR logo" className="w-8 h-8 object-contain" />
                       </div>
-                      <h3 className="text-xl font-semibold text-white">VPNSTR</h3>
+                      <h3 className={`text-xl font-semibold 
+                        ${colorMode === 'dark' ? 'text-white' : 'text-gray-900'}`}>
+                        VPNSTR
+                      </h3>
                     </div>
-                    <p className="text-gray-400 text-sm leading-relaxed">
+                    <p className={`text-sm leading-relaxed
+                      ${colorMode === 'dark' ? 'text-gray-400' : 'text-gray-600'}`}>
                       A privacy-focused VPN service accepting Bitcoin Lightning and Cashu payments. Designed for users who prioritize anonymity and secure internet access.
                     </p>
                   </div>
 
                   {/* NostrDevKit */}
-                  <div className="flex flex-col h-full p-4 md:p-8 rounded-lg 
-                    bg-purple-900/10 backdrop-blur-sm border border-purple-900/20
-                    transition-all duration-300 hover:bg-purple-900/15
-                    hover:border-purple-900/30 hover:transform hover:scale-[1.02]"
-                  >
+                  <div className={`flex flex-col h-full p-4 md:p-8 rounded-lg 
+                    ${colorMode === 'dark' 
+                      ? 'bg-purple-900/10 border-purple-900/20' 
+                      : 'bg-white/80 border-purple-100'}
+                    backdrop-blur-sm border
+                    transition-all duration-300 
+                    ${colorMode === 'dark'
+                      ? 'hover:bg-purple-900/15 hover:border-purple-900/30'
+                      : 'hover:bg-white/90 hover:border-purple-200'}
+                    hover:transform hover:scale-[1.02]`}>
                     <div className="flex items-center gap-4 mb-4">
                       <div className="w-10 h-10 flex items-center justify-center">
                         <img src={ndklogo} alt="NDK logo" className="w-8 h-8 object-contain" />
                       </div>
-                      <h3 className="text-xl font-semibold text-white">NostrDevKit (NDK)</h3>
+                      <h3 className={`text-xl font-semibold 
+                        ${colorMode === 'dark' ? 'text-white' : 'text-gray-900'}`}>
+                        NostrDevKit (NDK)
+                      </h3>
                     </div>
-                    <p className="text-gray-400 text-sm leading-relaxed">
+                    <p className={`text-sm leading-relaxed
+                      ${colorMode === 'dark' ? 'text-gray-400' : 'text-gray-600'}`}>
                       A comprehensive development kit for building Nostr applications. NDK simplifies the creation of relays, clients, and other Nostr-based solutions with robust tooling.
                     </p>
                   </div>
 
                   {/* Boardwalk Cash */}
-                  <div className="flex flex-col h-full p-4 md:p-8 rounded-lg 
-                    bg-purple-900/10 backdrop-blur-sm border border-purple-900/20
-                    transition-all duration-300 hover:bg-purple-900/15
-                    hover:border-purple-900/30 hover:transform hover:scale-[1.02]"
-                  >
+                  <div className={`flex flex-col h-full p-4 md:p-8 rounded-lg 
+                    ${colorMode === 'dark' 
+                      ? 'bg-purple-900/10 border-purple-900/20' 
+                      : 'bg-white/80 border-purple-100'}
+                    backdrop-blur-sm border
+                    transition-all duration-300 
+                    ${colorMode === 'dark'
+                      ? 'hover:bg-purple-900/15 hover:border-purple-900/30'
+                      : 'hover:bg-white/90 hover:border-purple-200'}
+                    hover:transform hover:scale-[1.02]`}>
                     <div className="flex items-center gap-4 mb-4">
                       <div className="w-10 h-10 flex items-center justify-center">
                         <img src={bwcLogo} alt="Boardwalk Cash logo" className="w-8 h-8 object-contain" />
                       </div>
-                      <h3 className="text-xl font-semibold text-white">Boardwalk Cash</h3>
+                      <h3 className={`text-xl font-semibold 
+                        ${colorMode === 'dark' ? 'text-white' : 'text-gray-900'}`}>
+                        Boardwalk Cash
+                      </h3>
                     </div>
-                    <p className="text-gray-400 text-sm leading-relaxed">
+                    <p className={`text-sm leading-relaxed
+                      ${colorMode === 'dark' ? 'text-gray-400' : 'text-gray-600'}`}>
                       A dollar-based CashuBTC wallet integrating Bitcoin and Nostr. Offering a seamless experience for managing digital cash with built-in social features.
                     </p>
                   </div>
 
                   {/* Npubcash */}
-                  <div className="flex flex-col h-full p-4 md:p-8 rounded-lg 
-                    bg-purple-900/10 backdrop-blur-sm border border-purple-900/20
-                    transition-all duration-300 hover:bg-purple-900/15
-                    hover:border-purple-900/30 hover:transform hover:scale-[1.02]"
-                  >
+                  <div className={`flex flex-col h-full p-4 md:p-8 rounded-lg 
+                    ${colorMode === 'dark' 
+                      ? 'bg-purple-900/10 border-purple-900/20' 
+                      : 'bg-white/80 border-purple-100'}
+                    backdrop-blur-sm border
+                    transition-all duration-300 
+                    ${colorMode === 'dark'
+                      ? 'hover:bg-purple-900/15 hover:border-purple-900/30'
+                      : 'hover:bg-white/90 hover:border-purple-200'}
+                    hover:transform hover:scale-[1.02]`}>
                     <div className="flex items-center gap-4 mb-4">
                       <div className="w-10 h-10 flex items-center justify-center">
                         <img src={npubcashLogo} alt="Npubcash logo" className="w-8 h-8 object-contain" />
                       </div>
-                      <h3 className="text-xl font-semibold text-white">Npubcash</h3>
+                      <h3 className={`text-xl font-semibold 
+                        ${colorMode === 'dark' ? 'text-white' : 'text-gray-900'}`}>
+                        Npubcash
+                      </h3>
                     </div>
-                    <p className="text-gray-400 text-sm leading-relaxed">
+                    <p className={`text-sm leading-relaxed
+                      ${colorMode === 'dark' ? 'text-gray-400' : 'text-gray-600'}`}>
                       An innovative LNURL service that generates and manages tokens for received payments, enabling seamless offline-to-online transaction experiences.
                     </p>
                   </div>
@@ -435,7 +497,10 @@ export default function Home(): JSX.Element {
           </div>
 
           <div className="w-full">
-            <footer className="py-8 md:py-16 relative bg-gradient-to-b from-purple-950/5 via-purple-950/10 to-purple-950/20">
+            <footer className={`py-8 md:py-16 relative 
+              ${colorMode === 'dark'
+                ? 'bg-gradient-to-b from-purple-950/5 via-purple-950/10 to-purple-950/20'
+                : 'bg-gradient-to-b from-white/50 via-purple-50/30 to-purple-100/30'}`}>
               <div className="absolute inset-0 backdrop-blur-[2px]" />
               <div className="container mx-auto px-4 relative">
                 <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
@@ -443,21 +508,32 @@ export default function Home(): JSX.Element {
                   <div className="flex items-start">
                     <div className="flex items-center gap-4">
                       <img src={tsLogo} alt="TypeScript Logo" className="w-8 h-8 md:w-12 md:h-12" />
-                      <span className="text-2xl md:text-3xl font-bold text-white">Cashu TS</span>
+                      <span className={`text-2xl md:text-3xl font-bold 
+                        ${colorMode === 'dark' ? 'text-white' : 'text-gray-900'}`}>
+                        Cashu TS
+                      </span>
                     </div>
                   </div>
 
-                  {/* Spacer Column */}
-                  <div></div>
-
                   {/* Community Column */}
                   <div>
-                    <h3 className="text-white font-semibold mb-4">Community</h3>
+                    <h3 className={`font-semibold mb-4
+                      ${colorMode === 'dark' ? 'text-white' : 'text-gray-900'}`}>
+                      Community
+                    </h3>
                     <div className="flex flex-col space-y-2">
-                      <a href="https://matrix.to/#/#cashu-ts:matrix.cashu.space" className="text-zinc-400 hover:text-purple-400 transition-colors" target="_blank" rel="noopener noreferrer">
+                      <a href="https://matrix.to/#/#cashu-ts:matrix.cashu.space" 
+                        className={`${colorMode === 'dark' ? 'text-zinc-400' : 'text-gray-600'} 
+                        hover:text-purple-500 transition-colors`} 
+                        target="_blank" 
+                        rel="noopener noreferrer">
                         Matrix
                       </a>
-                      <a href="https://t.me/CashuBTC" className="text-zinc-400 hover:text-purple-400 transition-colors" target="_blank" rel="noopener noreferrer">
+                      <a href="https://t.me/CashuBTC" 
+                        className={`${colorMode === 'dark' ? 'text-zinc-400' : 'text-gray-600'} 
+                        hover:text-purple-500 transition-colors`} 
+                        target="_blank" 
+                        rel="noopener noreferrer">
                         Telegram
                       </a>
                     </div>
@@ -465,9 +541,16 @@ export default function Home(): JSX.Element {
 
                   {/* Resources Column */}
                   <div>
-                    <h3 className="text-white font-semibold mb-4">Resources</h3>
+                    <h3 className={`font-semibold mb-4
+                      ${colorMode === 'dark' ? 'text-white' : 'text-gray-900'}`}>
+                      Resources
+                    </h3>
                     <div className="flex flex-col space-y-2">
-                      <a href="https://cashu.space/" className="text-zinc-400 hover:text-purple-400 transition-colors" target="_blank" rel="noopener noreferrer">
+                      <a href="https://cashu.space/" 
+                        className={`${colorMode === 'dark' ? 'text-zinc-400' : 'text-gray-600'} 
+                        hover:text-purple-500 transition-colors`} 
+                        target="_blank" 
+                        rel="noopener noreferrer">
                         Official Website
                       </a>
                       <a href="https://github.com/cashubtc/awesome-cashu" className="text-zinc-400 hover:text-purple-400 transition-colors" target="_blank" rel="noopener noreferrer">
@@ -484,6 +567,19 @@ export default function Home(): JSX.Element {
           </div>
         </div>
       </main>
+    </>
+  );
+}
+
+export default function Home(): JSX.Element {
+  const { siteConfig } = useDocusaurusContext();
+  
+  return (
+    <Layout
+      title={`Hello from ${siteConfig.title}`}
+      description="Description will go into a meta tag in <head />"
+    >
+      <HomeContent />
     </Layout>
   );
 }

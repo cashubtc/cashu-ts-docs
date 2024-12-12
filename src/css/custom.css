@@ -42,6 +42,29 @@
 /* Add custom navbar styling */
 .navbar {
   border-bottom: 1px solid rgba(147, 51, 234, 0.1);
+  padding: 0;
+}
+
+/* Container for the entire navbar */
+.navbar__inner {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0;
+}
+
+/* Main content wrapper to match page content */
+.container {
+  max-width: var(--ifm-container-width) !important;
+  margin: 0 auto;
+  padding: 0 var(--ifm-spacing-horizontal);
+}
+
+/* Ensure navbar items are properly spaced */
+.navbar__items {
+  margin: 0 auto;
+  max-width: var(--ifm-container-width);
+  padding: 0 var(--ifm-spacing-horizontal);
+  width: 100%;
 }
 
 [data-theme="dark"] .navbar {
