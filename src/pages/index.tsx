@@ -4,6 +4,7 @@ import Layout from "@theme/Layout";
 import { useEffect, useRef } from 'react';
 import { createNoise3D } from 'simplex-noise';
 import cashuLogo from '@site/static/img/cashu-no-bg.png';
+import tsLogo from '@site/static/img/tslogo.png';
 
 export default function Home(): JSX.Element {
   const { siteConfig } = useDocusaurusContext();
@@ -370,6 +371,54 @@ export default function Home(): JSX.Element {
                 </div>
               </div>
             </div>
+          </div>
+
+          <div className="w-full mt-24">
+            <footer className="border-t border-purple-900/20 py-16 bg-purple-950/20 backdrop-blur-sm">
+              <div className="container mx-auto px-4">
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+                  {/* Logo Column */}
+                  <div className="flex items-start">
+                    <div className="flex items-center gap-4">
+                      <img src={tsLogo} alt="TypeScript Logo" className="w-12 h-12" />
+                      <span className="text-4xl font-bold text-white">Cashu TS</span>
+                    </div>
+                  </div>
+
+                  {/* Spacer Column */}
+                  <div></div>
+
+                  {/* Community Column */}
+                  <div>
+                    <h3 className="text-white font-semibold mb-4">Community</h3>
+                    <div className="flex flex-col space-y-2">
+                      <a href="https://matrix.to/#/#cashu-ts:matrix.cashu.space" className="text-zinc-400 hover:text-purple-400 transition-colors" target="_blank" rel="noopener noreferrer">
+                        Matrix
+                      </a>
+                      <a href="https://t.me/CashuBTC" className="text-zinc-400 hover:text-purple-400 transition-colors" target="_blank" rel="noopener noreferrer">
+                        Telegram
+                      </a>
+                    </div>
+                  </div>
+
+                  {/* Resources Column */}
+                  <div>
+                    <h3 className="text-white font-semibold mb-4">Resources</h3>
+                    <div className="flex flex-col space-y-2">
+                      <a href="https://cashu.space/" className="text-zinc-400 hover:text-purple-400 transition-colors" target="_blank" rel="noopener noreferrer">
+                        Official Website
+                      </a>
+                      <a href="https://github.com/cashubtc/awesome-cashu" className="text-zinc-400 hover:text-purple-400 transition-colors" target="_blank" rel="noopener noreferrer">
+                        Awesome Cashu
+                      </a>
+                      <a href="https://opencash.dev" className="text-zinc-400 hover:text-purple-400 transition-colors" target="_blank" rel="noopener noreferrer">
+                        OpenCash Association
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </footer>
           </div>
         </div>
       </main>
