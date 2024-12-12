@@ -441,8 +441,8 @@ export default function Home(): JSX.Element {
                   {/* Logo Column */}
                   <div className="flex items-start">
                     <div className="flex items-center gap-4">
-                      <img src={tsLogo} alt="TypeScript Logo" className="w-12 h-12" />
-                      <span className="text-4xl font-bold text-white">Cashu TS</span>
+                      <img src={tsLogo} alt="TypeScript Logo" className="w-8 h-8 md:w-12 md:h-12" />
+                      <span className="text-2xl md:text-3xl font-bold text-white">Cashu TS</span>
                     </div>
                   </div>
 
