@@ -326,9 +326,9 @@ export default function Home(): JSX.Element {
             </div>
           </div>
 
-          <div className="w-full mt-24 mb-24">
+          <div className="w-full mt-24">
             <div className="relative w-full py-24">
-              <div className="absolute inset-0 bg-gradient-to-b from-purple-900/10 to-transparent" />
+              <div className="absolute inset-0 bg-purple-950/5 backdrop-blur-sm" />
               
               <div className="container mx-auto px-4 relative">
                 <h2 className="text-center mb-8">
@@ -373,9 +373,10 @@ export default function Home(): JSX.Element {
             </div>
           </div>
 
-          <div className="w-full mt-24">
-            <footer className="border-t border-purple-900/20 py-16 bg-purple-950/20 backdrop-blur-sm">
-              <div className="container mx-auto px-4">
+          <div className="w-full">
+            <footer className="py-16 relative bg-gradient-to-b from-purple-950/5 via-purple-950/10 to-purple-950/20">
+              <div className="absolute inset-0 backdrop-blur-[2px]" />
+              <div className="container mx-auto px-4 relative">
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
                   {/* Logo Column */}
                   <div className="flex items-start">

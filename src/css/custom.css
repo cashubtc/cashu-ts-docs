@@ -108,13 +108,23 @@ nav.navbar {
   padding-top: 4rem !important;
 }
 
-/* Hide theme switcher by default (on homepage) */
+/* Hide hamburger menu */
+.navbar__toggle {
+  display: none !important;
+}
+
+/* Hide theme switcher by default */
 .navbar .clean-btn[class*='toggleButton'] {
   display: none !important;
 }
 
 /* Show theme switcher only on docs pages */
 .docs-wrapper .navbar .clean-btn[class*='toggleButton'] {
+  display: flex !important;
+}
+
+/* Ensure GitHub icon is always visible */
+.header-github-link {
   display: flex !important;
 }
 
@@ -245,4 +255,33 @@ nav.navbar {
   height: 24px;
   display: flex;
   background: url("data:image/svg+xml,...") no-repeat;
+}
+
+/* Keep hamburger hidden but fix alignment */
+.navbar__toggle {
+  display: none !important;
+}
+
+/* Fix mobile navbar alignment */
+.navbar {
+  display: flex !important;
+  justify-content: flex-start !important;  /* Align to the left */
+  padding-left: 1rem !important;
+  padding-right: 1rem !important;
+}
+
+@media (min-width: 768px) {
+  .navbar {
+    padding-left: 6rem !important;
+    padding-right: 6rem !important;
+  }
+}
+
+/* Ensure items are properly spaced */
+.navbar__items {
+  justify-content: flex-start !important;
+}
+
+.navbar__items--right {
+  margin-left: auto !important;
 }
