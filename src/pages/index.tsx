@@ -553,10 +553,18 @@ function HomeContent(): JSX.Element {
                         rel="noopener noreferrer">
                         Official Website
                       </a>
-                      <a href="https://github.com/cashubtc/awesome-cashu" className="text-zinc-400 hover:text-purple-400 transition-colors" target="_blank" rel="noopener noreferrer">
+                      <a href="https://github.com/cashubtc/awesome-cashu" 
+                        className={`${colorMode === 'dark' ? 'text-zinc-400' : 'text-gray-600'} 
+                        hover:text-purple-500 transition-colors`} 
+                        target="_blank" 
+                        rel="noopener noreferrer">
                         Awesome Cashu
                       </a>
-                      <a href="https://opencash.dev" className="text-zinc-400 hover:text-purple-400 transition-colors" target="_blank" rel="noopener noreferrer">
+                      <a href="https://opencash.dev" 
+                        className={`${colorMode === 'dark' ? 'text-zinc-400' : 'text-gray-600'} 
+                        hover:text-purple-500 transition-colors`} 
+                        target="_blank" 
+                        rel="noopener noreferrer">
                         OpenCash Association
                       </a>
                     </div>
