@@ -49,16 +49,16 @@ function HomeContent(): JSX.Element {
     canvasA.style.display = 'none';
     container.appendChild(canvasA);
 
-    const particleCount = 300;
+    const particleCount = 400;
     const particlePropCount = 9;
     const particlePropsLength = particleCount * particlePropCount;
-    const rangeY = 150;
+    const rangeY = 500;
     const baseTTL = 100;
     const rangeTTL = 200;
-    const baseSpeed = 0.03;
-    const rangeSpeed = 0.5;
-    const baseRadius = 0.3;
-    const rangeRadius = 1;
+    const baseSpeed = 0.05;
+    const rangeSpeed = 0.8;
+    const baseRadius = 0.5;
+    const rangeRadius = 1.5;
     const baseHue = colorMode === 'dark' ? 260 : 230;
     const rangeHue = 40;
     const noiseSteps = 6;
@@ -79,7 +79,7 @@ function HomeContent(): JSX.Element {
     const initParticle = (i: number) => {
       if (i === logoParticleIndex) {
         let x = rand(canvasA.width);
-        let y = center[1] + randRange(rangeY);
+        let y = center[1] - 200 + randRange(rangeY);
         let vx = 0;
         let vy = 0;
         let life = 0;
@@ -91,7 +91,7 @@ function HomeContent(): JSX.Element {
         particleProps.set([x, y, vx, vy, life, ttl, speed, radius, hue], i);
       } else {
         let x = rand(canvasA.width);
-        let y = center[1] + randRange(rangeY);
+        let y = center[1] - 100 + randRange(rangeY);
         let vx = 0;
         let vy = 0;
         let life = 0;
@@ -117,7 +117,7 @@ function HomeContent(): JSX.Element {
       ctxA.save();
       
       if (index === logoParticleIndex) {
-        const opacity = colorMode === 'dark' ? 0.04 : 0.03;
+        const opacity = colorMode === 'dark' ? 0.4 : 0.6;
         ctxA.globalAlpha = opacity;
         const angle = Math.atan2(y2 - y, x2 - x);
         ctxA.translate(x, y);
@@ -126,9 +126,9 @@ function HomeContent(): JSX.Element {
       } else {
         ctxA.lineCap = 'round';
         ctxA.lineWidth = radius;
-        const saturation = colorMode === 'dark' ? '85%' : '70%';
-        const lightness = colorMode === 'dark' ? '65%' : '60%';
-        const opacity = colorMode === 'dark' ? 0.5 : 0.4;
+        const saturation = colorMode === 'dark' ? '90%' : '75%';
+        const lightness = colorMode === 'dark' ? '70%' : '65%';
+        const opacity = colorMode === 'dark' ? 0.4 : 0.3;
         ctxA.strokeStyle = `hsla(${hue},${saturation},${lightness},${fadeInOut(life, ttl) * opacity})`;
         ctxA.beginPath();
         ctxA.moveTo(x, y);
@@ -199,13 +199,13 @@ function HomeContent(): JSX.Element {
 
     const renderGlow = () => {
       ctxB.save();
-      ctxB.filter = 'blur(6px) brightness(120%)';
+      ctxB.filter = 'blur(8px) brightness(120%)';
       ctxB.globalCompositeOperation = 'lighter';
       ctxB.drawImage(canvasA, 0, 0);
       ctxB.restore();
 
       ctxB.save();
-      ctxB.filter = 'blur(2px) brightness(120%)';
+      ctxB.filter = 'blur(4px) brightness(120%)';
       ctxB.globalCompositeOperation = 'lighter';
       ctxB.drawImage(canvasA, 0, 0);
       ctxB.restore();
