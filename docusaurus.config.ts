@@ -51,7 +51,11 @@ const config: Config = {
     // Replace with your project's social card
     image: "img/docusaurus-social-card.jpg",
     navbar: {
-      title: "Cashu-TS",
+      title: "Cashu TS",
+      logo: {
+        alt: "Cashu-TS Logo",
+        src: "img/tslogo.png",
+      },
       items: [
         {
           type: "docSidebar",
@@ -59,19 +63,16 @@ const config: Config = {
           position: "left",
           label: "Docs",
         },
+        {
+          href: 'https://github.com/cashubtc/cashu-ts',
+          label: 'GitHub',
+          position: 'right',
+        },
       ],
-      logo: {
-        alt: "Site Logo",
-        src: "img/tslogo.png",
-        target: "_self",
-        width: 32,
-        height: 32,
-        className: "custom-navbar-logo-class",
-      },
     },
     announcementBar: {
       id: "wip",
-      content: "These docs are a WORK IN PROGRESS.",
+      content: "We’re actively building these docs—check back for updates.",
       backgroundColor: "#18181b",
       textColor: "#fafafa",
       isCloseable: false,
