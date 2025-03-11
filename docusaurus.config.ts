@@ -6,6 +6,12 @@ const config: Config = {
   title: "Cashu-TS Docs",
   tagline: "A TypeScript library for building Cashu wallets",
   favicon: "img/favicon.ico",
+  stylesheets: [
+    {
+      href: "https://fonts.googleapis.com/css2?family=Jersey+20&display=swap",
+      rel: "stylesheet",
+    },
+  ],
   plugins: [
     async function myPlugin(context, options) {
       return {
@@ -50,6 +56,9 @@ const config: Config = {
   themeConfig: {
     // Replace with your project's social card
     image: "img/docusaurus-social-card.jpg",
+    colorMode: {
+      defaultMode: "dark",
+    },
     navbar: {
       title: "Cashu TS",
       logo: {
@@ -64,9 +73,9 @@ const config: Config = {
           label: "Docs",
         },
         {
-          href: 'https://github.com/cashubtc/cashu-ts',
-          label: 'GitHub',
-          position: 'right',
+          href: "https://github.com/cashubtc/cashu-ts",
+          label: "GitHub",
+          position: "right",
         },
       ],
     },
