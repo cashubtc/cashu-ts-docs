@@ -1,0 +1,12 @@
+{
+  "plugin": ["typedoc-plugin-markdown"],
+  "entryFileName": "Overview.md",
+  "out": "./docs/03-API",
+  "entryPoints": ["./cashu-ts/src/index.ts"],
+  "tsconfig": "./cashu-ts/tsconfig.json",
+  "sanitizeComments": true,
+  "readme": "none",
+  "compilerOptions": {
+    "skipLibCheck": true
+  }
+}

@@ -1,0 +1,3 @@
+[submodule "cashu-ts"]
+	path = cashu-ts
+	url = https://github.com/cashubtc/cashu-ts.git
